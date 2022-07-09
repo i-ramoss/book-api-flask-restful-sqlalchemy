@@ -46,6 +46,18 @@ class Book(Resource):
 
         return book_schema.dump(book_data), 200
 
+    @book_ns.doc("Delete a book")
+    def delete(self, id):
+        book_data = BookModel.find_by_id(id)
+
+        if not book_data:
+            return {"message": "Invalid book"}, 400
+
+        book_data.delete_from_db()
+
+        return {"message": "Book deleted successfully"}, 200
+
+
 class BookList(Resource):
     def get(self):
         return book_list_schema.dump(BookModel.find_all()), 200
