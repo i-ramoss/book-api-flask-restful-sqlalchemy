@@ -1,2 +1,5 @@
 # environments dependencies and variables
 env
+
+# cache
+*__pycache__
