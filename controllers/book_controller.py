@@ -21,6 +21,7 @@ item = book_ns.model(
 
 
 class Book(Resource):
+    @book_ns.doc("List a book")
     def get(self, id):
         book_data = BookModel.find_by_id(id)
 
