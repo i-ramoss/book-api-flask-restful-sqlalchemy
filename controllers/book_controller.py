@@ -11,6 +11,14 @@ book_ns = server.book_ns
 book_schema = BookSchema()
 book_list_schema = BookSchema(many=True)
 
+item = book_ns.model(
+    "Book",
+    {
+        "title": fields.String(description="Book title"),
+        "pages": fields.Integer(default=0),
+    },
+)
+
 
 class Book(Resource):
     def get(self, id):
