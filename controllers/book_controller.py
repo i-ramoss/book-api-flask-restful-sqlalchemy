@@ -29,6 +29,22 @@ class Book(Resource):
 
         return {"message": "Book not found"}, 404
 
+    @book_ns.expect(item)
+    @book_ns.doc("Update a book")
+    def put(self, id):
+        book_json = request.get_json()
+
+        book_data = BookModel.find_by_id(id)
+
+        if not book_data:
+            return {"message": "Invalid book"}, 400
+
+        book_data.title = book_json["title"]
+        book_data.pages = book_json["pages"]
+
+        book_data.save_to_db()
+
+        return book_schema.dump(book_data), 200
 
 class BookList(Resource):
     def get(self):
