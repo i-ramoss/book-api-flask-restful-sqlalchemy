@@ -6,7 +6,7 @@ class Server:
     def __init__(self):
         self.app = Flask(__name__)
         self.blueprint = Blueprint("api", __name__, url_prefix="/api")
-        self.api = Api(self.blueprint, doc="/doc", title="Sample Flask SQLAlchey")
+        self.api = Api(self.blueprint, doc="/doc", title="Sample Flask SQLAlchemy")
 
         self.app.register_blueprint(self.blueprint)
 

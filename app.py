@@ -4,6 +4,7 @@ from marshmallow import ValidationError
 from ma import ma
 from db import db
 
+from controllers.book_controller import Book, BookList
 from server.instance import server
 
 api = server.api
@@ -14,6 +15,9 @@ app = server.app
 def create_tables():
     db.create_all()
 
+
+api.add_resource(Book, "/books/<int:id>")
+api.add_resource(BookList, "/books")
 
 if __name__ == "__main__":
     db.init_app(app)
