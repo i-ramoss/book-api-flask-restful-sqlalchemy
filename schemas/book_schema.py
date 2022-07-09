@@ -1,6 +1,6 @@
 from ma import ma
 
-from models.book import BookModel
+from models.book_model import BookModel
 
 
 class BookSchema(ma.SQLAlchemyAutoSchema):

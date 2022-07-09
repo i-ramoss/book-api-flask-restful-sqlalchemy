@@ -1,8 +1,8 @@
 from flask import request
 from flask_restplus import Resource, fields
 
-from models.book import BookModel
-from schemas.book import BookSchema
+from models.book_model import BookModel
+from schemas.book_schema import BookSchema
 
 from server.instance import server
 
@@ -18,4 +18,6 @@ class Book(Resource):
 
         if book_data:
             print("Book Data directly from database: ", book_data)
-            return book_schema.dump(book_data)
+            return book_schema.dump(book_data), 200
+
+        return {"message": "Book not found"}, 404
